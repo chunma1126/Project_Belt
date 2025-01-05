@@ -1,51 +1,68 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(MyBoolArray))]
-public class MyArrayEditor : Editor
+[CustomPropertyDrawer(typeof(MyBoolArray))]
+public class MyArrayDrawer : PropertyDrawer
 {
-    public override void OnInspectorGUI()
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        MyBoolArray script = (MyBoolArray)target;
+        EditorGUI.BeginProperty(position, label, property);
 
-        EditorGUI.BeginChangeCheck();
+        // Start drawing the label
+        position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-        int newRows = EditorGUILayout.IntField("Rows", script.rows);
-        int newColumns = EditorGUILayout.IntField("Columns", script.columns);
+        // Find the properties
+        SerializedProperty widthProp = property.FindPropertyRelative("Width");
+        SerializedProperty heightProp = property.FindPropertyRelative("Height");
+        SerializedProperty gridProp = property.FindPropertyRelative("serializedGrid");
 
-        // 크기 변경 시 Undo 처리
-        if (newRows != script.rows || newColumns != script.columns)
+        // Adjust position for width and height fields
+        Rect sizeRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        EditorGUI.indentLevel++;
+
+        // Draw Width and Height fields
+        EditorGUI.PropertyField(sizeRect, widthProp, new GUIContent("Width"));
+        sizeRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        EditorGUI.PropertyField(sizeRect, heightProp, new GUIContent("Height"));
+        sizeRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+
+        // Validate grid size and update serialized array if necessary
+        int width = widthProp.intValue;
+        int height = heightProp.intValue;
+
+        if (width < 1) width = 1;
+        if (height < 1) height = 1;
+
+        int newSize = width * height;
+        if (gridProp.arraySize != newSize)
         {
-            Undo.RecordObject(script, "Change Array Size");
-            script.rows = newRows;
-            script.columns = newColumns;
+            gridProp.arraySize = newSize;
         }
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Grid Values:", EditorStyles.boldLabel);
-
-        for (int i = 0; i < script.rows; i++)
+        // Draw the grid
+        for (int i = 0; i < height; i++)
         {
-            EditorGUILayout.BeginHorizontal();
-            for (int j = 0; j < script.columns; j++)
+            Rect rowRect = new Rect(position.x, sizeRect.y + i * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing), position.width, EditorGUIUtility.singleLineHeight);
+            for (int j = 0; j < width; j++)
             {
-                bool currentValue = script.GetValue(i, j);
-                bool newValue = EditorGUILayout.Toggle(currentValue, GUILayout.Width(30));
+                int index = i * width + j;
+                SerializedProperty cellProp = gridProp.GetArrayElementAtIndex(index);
 
-                // 값 변경 시 Undo 처리
-                if (currentValue != newValue)
-                {
-                    Undo.RecordObject(script, "Toggle Grid Value");
-                    script.SetValue(i, j, newValue);
-                }
+                Rect cellRect = new Rect(rowRect.x + j * 30, rowRect.y, 30, EditorGUIUtility.singleLineHeight);
+                cellProp.FindPropertyRelative("value").boolValue = EditorGUI.Toggle(cellRect, cellProp.FindPropertyRelative("value").boolValue);
             }
-            EditorGUILayout.EndHorizontal();
         }
 
-        if (EditorGUI.EndChangeCheck())
-        {
-            // 변경 사항이 있을 때만 'SetDirty' 호출
-            EditorUtility.SetDirty(script);
-        }
+        EditorGUI.indentLevel--;
+        EditorGUI.EndProperty();
+    }
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        SerializedProperty heightProp = property.FindPropertyRelative("Height");
+        int height = heightProp.intValue;
+        if (height < 1) height = 1;
+
+        return (height + 2) * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
     }
 }

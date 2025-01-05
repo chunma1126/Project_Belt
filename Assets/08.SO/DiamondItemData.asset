@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2e509d26f10ba4c8bf09a4d9268855, type: 3}
   m_Name: DiamondItemData
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
+  myBoolArray:
+    Width: 1
+    Height: 3
+    serializedGrid:
+    - value: 1
+    - value: 1
+    - value: 1
   itemName: Diamond
   itemIcon: {fileID: 3244622203517571467, guid: 1730a4e2456479647a039a0797aab5be, type: 3}

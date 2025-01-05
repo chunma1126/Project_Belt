@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
@@ -45,12 +46,12 @@ public class ItemGrid : MonoBehaviour
 
     public bool PlaceItem(InventoryItem inventoryItem , int posX , int posY,ref InventoryItem overlapItem)
     {
-        if (BoundariesCheck(posX , posY , inventoryItem.itemData.width , inventoryItem.itemData.height) == false)
+        if (BoundariesCheck(posX , posY , inventoryItem.itemData.myBoolArray.Width , inventoryItem.itemData.myBoolArray.Height) == false)
         {
             return false;
         }
 
-        if (OverlapCheck(posX , posY ,inventoryItem.itemData.width , inventoryItem.itemData.height , ref overlapItem) == false)
+        if (OverlapCheck(posX , posY ,inventoryItem.itemData.myBoolArray.Width , inventoryItem.itemData.myBoolArray.Height , ref overlapItem) == false)
         {
             overlapItem = null;
             return false;
@@ -65,13 +66,15 @@ public class ItemGrid : MonoBehaviour
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
         
-        for (int x = 0; x < inventoryItem.itemData.width; x++)
+        for (int y = 0; y < inventoryItem.itemData.myBoolArray.Height; y++) // 열 먼저 순회
         {
-            for (int y = 0; y < inventoryItem.itemData.height; y++)
+            for (int x = 0; x < inventoryItem.itemData.myBoolArray.Width; x++) // 행 순회
             {
-                _inventoryItemSlot[posX + x, posY + y] = inventoryItem;
+                if (inventoryItem.itemData.myBoolArray.GetValue(x, y))
+                    _inventoryItemSlot[posX + x, posY + y] = inventoryItem;
             }
         }
+        
 
         inventoryItem.onGridPositionX = posX;
         inventoryItem.onGridPositionY = posY;
@@ -86,11 +89,12 @@ public class ItemGrid : MonoBehaviour
     public Vector2 CalculatePositionOnGrid(InventoryItem inventoryItem, int posX, int posY)
     {
         Vector2 position = new Vector2();
-        position.x = posX * TILESIZEWIDHT + TILESIZEWIDHT * inventoryItem.itemData.width / 2;
-        position.y = -(posY * TILESIZEHEIGHT + TILESIZEHEIGHT * inventoryItem.itemData.height / 2);
+        position.x = posX * TILESIZEWIDHT + TILESIZEWIDHT * inventoryItem.itemData.myBoolArray.Width / 2;
+        position.y = -(posY * TILESIZEHEIGHT + TILESIZEHEIGHT * inventoryItem.itemData.myBoolArray.Height / 2);
         return position;
     }
 
+    
     private bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
     {
         for (int x = 0; x < width; x++)
@@ -133,11 +137,12 @@ public class ItemGrid : MonoBehaviour
 
     private void CleanGridReference(InventoryItem item)
     {
-        for (int i = 0; i < item.itemData.width; i++)
+        for (int y = 0; y < item.itemData.myBoolArray.Height; y++)
         {
-            for (int j = 0; j < item.itemData.height; j++)
+            for (int x = 0; x < item.itemData.myBoolArray.Width; x++)
             {
-                _inventoryItemSlot[item.onGridPositionX + i, item.onGridPositionY + j] = null;
+                if (item.itemData.myBoolArray.GetValue(x,y))
+                    _inventoryItemSlot[item.onGridPositionX + x, item.onGridPositionY + y] = null;
             }
         }
     }
@@ -179,4 +184,31 @@ public class ItemGrid : MonoBehaviour
     {
         return _inventoryItemSlot[x , y];
     }
+    
+    [ContextMenu("Log")]
+    public void Log()
+    {
+        StringBuilder sb = new StringBuilder(); 
+        for (int y = 0; y < gridSizeHeight; y++) 
+        {
+            for (int x = 0; x < gridSizeWidth; x++) // 열 순회
+            {
+                if (_inventoryItemSlot[x, y] == null)
+                {
+                    sb.Append("0 ");
+                }
+                else
+                {
+                    sb.Append("1 ");
+                }
+                
+            }
+            
+            sb.Append("\n"); 
+        }
+        
+        Debug.Log(sb);
+    }
+
+    
 }

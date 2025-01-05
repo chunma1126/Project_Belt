@@ -303,10 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e6a692c8f330041a5d4f098d11dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectItem: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 4e2ea3d4c01ae9c47bd318ce702ccc7a, type: 2}
   - {fileID: 11400000, guid: c8fcd7baeca4d9d42b049d264f0ef0f9, type: 2}
-  - {fileID: 11400000, guid: 01da3b2b6ebde4a4eba2f02ed618b302, type: 2}
   itemPrefab: {fileID: 2573826789360307965, guid: 039fb45bb9435974eb7d01c07b60c72c, type: 3}
   canvasTransform: {fileID: 1422254381}
 --- !u!114 &519420035

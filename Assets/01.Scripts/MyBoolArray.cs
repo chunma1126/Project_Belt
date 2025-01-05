@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class SerializableBoolean
@@ -11,13 +12,15 @@ public class SerializableBoolean
     }
 }
 
-public class MyBoolArray : MonoBehaviour
+[System.Serializable]
+public class MyBoolArray
 {
-    public int rows = 3;
-    public int columns = 3;
+    public int Width = 3;
+    public int Height = 3;
 
     // 직렬화된 1D 배열
-    [SerializeField] private SerializableBoolean[] serializedGrid;
+    [SerializeField]
+    private SerializableBoolean[] serializedGrid;
 
     // 런타임 중에 사용할 2D 배열
     private bool[,] runtimeGrid;
@@ -26,8 +29,7 @@ public class MyBoolArray : MonoBehaviour
     {
         get
         {
-            // 배열 크기가 일치하지 않으면 직렬화된 값에서 로드
-            if (runtimeGrid == null || runtimeGrid.GetLength(0) != rows || runtimeGrid.GetLength(1) != columns)
+            if (runtimeGrid == null || runtimeGrid.GetLength(0) != Width || runtimeGrid.GetLength(1) != Height)
             {
                 LoadGridFromSerialized();
             }
@@ -35,40 +37,36 @@ public class MyBoolArray : MonoBehaviour
         }
     }
 
-    private void OnValidate()
+    public MyBoolArray(int width, int height)
     {
-        if (rows < 1) rows = 1;
-        if (columns < 1) columns = 1;
-
-        // 직렬화된 배열 크기 확인 후 필요시 새로 할당
-        if (serializedGrid == null || serializedGrid.Length != rows * columns)
+        Width = width;
+        Height = height;
+        InitializeGrid();
+    }
+    private void InitializeGrid()
+    {
+        serializedGrid = new SerializableBoolean[Width * Height];
+        for (int j = 0; j < Height; j++) // 행 먼저 순회
         {
-            serializedGrid = new SerializableBoolean[rows * columns];
-            for (int i = 0; i < serializedGrid.Length; i++)
+            for (int i = 0; i < Width; i++) // 열 순회
             {
-                serializedGrid[i] = new SerializableBoolean(false);
+                int index = j * Width + i;
+                serializedGrid[index] = new SerializableBoolean(false);
             }
         }
 
-        // 직렬화된 값으로 2D 배열 로드
-        LoadGridFromSerialized();
-    }
-
-    private void Awake()
-    {
         LoadGridFromSerialized();
     }
 
     private void LoadGridFromSerialized()
     {
-        // 런타임 2D 배열로 변환
-        runtimeGrid = new bool[rows, columns];
+        runtimeGrid = new bool[Width, Height];
 
-        for (int i = 0; i < rows; i++)
+        for (int j = 0; j < Height; j++) // 행 순회
         {
-            for (int j = 0; j < columns; j++)
+            for (int i = 0; i < Width; i++) // 열 순회
             {
-                int index = i * columns + j;
+                int index = j * Width + i;
                 if (index < serializedGrid.Length)
                 {
                     runtimeGrid[i, j] = serializedGrid[index]?.value ?? false;
@@ -79,16 +77,14 @@ public class MyBoolArray : MonoBehaviour
 
     public void SetValue(int row, int col, bool value)
     {
-        if (row < 0 || row >= rows || col < 0 || col >= columns)
+        if (row < 0 || row >= Width || col < 0 || col >= Height)
             return;
 
-        // 값이 변경되었을 때만 업데이트
         if (runtimeGrid[row, col] != value)
         {
             runtimeGrid[row, col] = value;
-            int index = row * columns + col;
+            int index = col * Width + row; // 행을 먼저 계산
 
-            // 직렬화된 배열 업데이트
             if (serializedGrid != null && index < serializedGrid.Length)
             {
                 if (serializedGrid[index] == null)
@@ -99,11 +95,12 @@ public class MyBoolArray : MonoBehaviour
         }
     }
 
-    public bool GetValue(int row, int col)
+
+    public bool GetValue(int x, int y)//왜인지 모르겠는데 2차원 배열이 왼쪽으로 90도 돌아가 있음.
     {
-        if (row < 0 || row >= rows || col < 0 || col >= columns)
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
             return false;
 
-        return Grid[row, col];
+        return Grid[x, y];
     }
 }

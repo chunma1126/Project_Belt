@@ -15,7 +15,7 @@ public class InventoryController : MonoBehaviour
         }
     }
     
-    private InventoryItem selectItem;
+    public InventoryItem selectItem;
     private InventoryItem overlapItem;
     private RectTransform rectTransform;
 
@@ -81,7 +81,7 @@ public class InventoryController : MonoBehaviour
         else
         {
             inventoryHighlighter.Show(selectedItemGrid.BoundariesCheck(positionOnGrid.x , positionOnGrid.y , 
-                selectItem.itemData.width , selectItem.itemData.height));
+                selectItem.itemData.myBoolArray.Width , selectItem.itemData.myBoolArray.Height));
             
             
             inventoryHighlighter.SetSize(selectItem);
@@ -121,8 +121,8 @@ public class InventoryController : MonoBehaviour
 
         if (selectItem != null)
         {
-            mousePos.x -= (selectItem.itemData.width - 1) * ItemGrid.TILESIZEWIDHT / 2;
-            mousePos.y += (selectItem.itemData.height - 1) * ItemGrid.TILESIZEHEIGHT / 2;
+            mousePos.x -= (selectItem.itemData.myBoolArray.Width - 1) * ItemGrid.TILESIZEWIDHT / 2;
+            mousePos.y += (selectItem.itemData.myBoolArray.Height - 1) * ItemGrid.TILESIZEHEIGHT / 2;
         }
 
         return selectedItemGrid.GetTileGridPosition(mousePos);
