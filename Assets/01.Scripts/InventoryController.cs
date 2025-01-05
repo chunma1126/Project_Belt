@@ -23,7 +23,6 @@ public class InventoryController : MonoBehaviour
     private InventoryItem itemToHighlight;
     private InventoryHighlighter inventoryHighlighter;
     
-    [SerializeField] private List<ItemData> items;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Transform canvasTransform;
     
@@ -39,8 +38,17 @@ public class InventoryController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             CreateRandomItem();
+            inventoryHighlighter.SetRotation(selectItem.GetRotate());
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(selectItem == null)return;
+            
+            selectItem.Rotate();
+            //inventoryHighlighter.SetRotation(selectItem.GetRotate());
+        }
+        
         if (selectedItemGrid == null)
         {
             inventoryHighlighter.Show(false);
@@ -81,7 +89,7 @@ public class InventoryController : MonoBehaviour
         else
         {
             inventoryHighlighter.Show(selectedItemGrid.BoundariesCheck(positionOnGrid.x , positionOnGrid.y , 
-                selectItem.itemData.myBoolArray.Width , selectItem.itemData.myBoolArray.Height));
+                selectItem.myBoolArray.Width , selectItem.myBoolArray.Height));
             
             
             inventoryHighlighter.SetSize(selectItem);
@@ -96,9 +104,7 @@ public class InventoryController : MonoBehaviour
         selectItem = inventoryItem;
         rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
-
-        int selectRandomID = Random.Range(0 , items.Count);
-        inventoryItem.Set(items[selectRandomID]);
+        
     }
 
     private void LeftMouseButtonPress()
@@ -121,8 +127,8 @@ public class InventoryController : MonoBehaviour
 
         if (selectItem != null)
         {
-            mousePos.x -= (selectItem.itemData.myBoolArray.Width - 1) * ItemGrid.TILESIZEWIDHT / 2;
-            mousePos.y += (selectItem.itemData.myBoolArray.Height - 1) * ItemGrid.TILESIZEHEIGHT / 2;
+            mousePos.x -= (selectItem.myBoolArray.Width - 1) * ItemGrid.TILESIZEWIDHT / 2;
+            mousePos.y += (selectItem.myBoolArray.Height - 1) * ItemGrid.TILESIZEHEIGHT / 2;
         }
 
         return selectedItemGrid.GetTileGridPosition(mousePos);
@@ -150,6 +156,7 @@ public class InventoryController : MonoBehaviour
         if (selectItem != null)
         {
             rectTransform = selectItem.GetComponent<RectTransform>();
+            inventoryHighlighter.SetRotation(selectItem.GetRotate());
         }
     }
 

@@ -88,5 +88,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1cb4f0bbb389a49836a1009d011103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeWidth: 1
-  sizeHeight: 1
+  myBoolArray:
+    Width: 3
+    Height: 3
+    serializedGrid:
+    - value: 1
+    - value: 0
+    - value: 0
+    - value: 1
+    - value: 0
+    - value: 0
+    - value: 1
+    - value: 1
+    - value: 1
+  itemIcon: {fileID: 3244622203517571467, guid: 1730a4e2456479647a039a0797aab5be, type: 3}
+  onGridPositionX: 0
+  onGridPositionY: 0
+  itemRotation: 0

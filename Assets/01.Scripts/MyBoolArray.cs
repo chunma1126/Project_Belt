@@ -18,11 +18,8 @@ public class MyBoolArray
     public int Width = 3;
     public int Height = 3;
 
-    // 직렬화된 1D 배열
-    [SerializeField]
-    private SerializableBoolean[] serializedGrid;
+    [SerializeField] private SerializableBoolean[] serializedGrid;
 
-    // 런타임 중에 사용할 2D 배열
     private bool[,] runtimeGrid;
 
     public bool[,] Grid
@@ -33,35 +30,15 @@ public class MyBoolArray
             {
                 LoadGridFromSerialized();
             }
+
             return runtimeGrid;
         }
     }
 
-    public MyBoolArray(int width, int height)
-    {
-        Width = width;
-        Height = height;
-        InitializeGrid();
-    }
-    private void InitializeGrid()
-    {
-        serializedGrid = new SerializableBoolean[Width * Height];
-        for (int j = 0; j < Height; j++) // 행 먼저 순회
-        {
-            for (int i = 0; i < Width; i++) // 열 순회
-            {
-                int index = j * Width + i;
-                serializedGrid[index] = new SerializableBoolean(false);
-            }
-        }
-
-        LoadGridFromSerialized();
-    }
-
-    private void LoadGridFromSerialized()
+    public void LoadGridFromSerialized()
     {
         runtimeGrid = new bool[Width, Height];
-
+                
         for (int j = 0; j < Height; j++) // 행 순회
         {
             for (int i = 0; i < Width; i++) // 열 순회
@@ -95,12 +72,48 @@ public class MyBoolArray
         }
     }
 
-
-    public bool GetValue(int x, int y)//왜인지 모르겠는데 2차원 배열이 왼쪽으로 90도 돌아가 있음.
+    public bool GetValue(int x, int y) //왜인지 모르겠는데 2차원 배열이 왼쪽으로 90도 돌아가 있음.
     {
         if (x < 0 || x >= Width || y < 0 || y >= Height)
             return false;
 
         return Grid[x, y];
     }
+
+    public void RotateGrid()
+    {
+        // 1. 임시 배열 생성 (행과 열 크기 바꿈)
+        bool[,] tempGrid = new bool[Height, Width];
+
+        // 2. 회전 로직: 90도 시계 방향으로 회전
+        for (int i = 0; i < Width; i++)
+        {
+            for (int j = 0; j < Height; j++)
+            {
+                tempGrid[j, Width - 1 - i] = runtimeGrid[i, j];
+            }
+        }
+
+        // 3. Width와 Height 교체
+        (Width, Height) = (Height, Width);
+
+        // 4. runtimeGrid 업데이트
+        runtimeGrid = tempGrid;
+
+        // 5. serializedGrid 업데이트
+        serializedGrid = new SerializableBoolean[Width * Height];
+        for (int j = 0; j < Height; j++)
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                int index = j * Width + i;
+                serializedGrid[index] = new SerializableBoolean(runtimeGrid[i, j]);
+            }
+        }
+    }
+
+
+
+
+
 }

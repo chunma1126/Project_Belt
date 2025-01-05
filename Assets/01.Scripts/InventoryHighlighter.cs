@@ -12,8 +12,8 @@ public class InventoryHighlighter : MonoBehaviour
     public void SetSize(InventoryItem targetItem)
     {
         Vector2 size = new Vector2();
-        size.x = targetItem.itemData.myBoolArray.Width * ItemGrid.TILESIZEWIDHT;
-        size.y = targetItem.itemData.myBoolArray.Height * ItemGrid.TILESIZEHEIGHT;
+        size.x = targetItem.myBoolArray.Width * ItemGrid.TILESIZEWIDHT;
+        size.y = targetItem.myBoolArray.Height * ItemGrid.TILESIZEHEIGHT;
 
         highlighter.sizeDelta = size;
 
@@ -50,5 +50,10 @@ public class InventoryHighlighter : MonoBehaviour
 
             highlighterImage.color = new Color(highlighterImage.color.r , highlighterImage.color.g , highlighterImage.color.b , 0);
         }
+    }
+
+    public void SetRotation(Quaternion _rotation)
+    {
+        highlighter.rotation = _rotation;
     }
 }

@@ -46,12 +46,12 @@ public class ItemGrid : MonoBehaviour
 
     public bool PlaceItem(InventoryItem inventoryItem , int posX , int posY,ref InventoryItem overlapItem)
     {
-        if (BoundariesCheck(posX , posY , inventoryItem.itemData.myBoolArray.Width , inventoryItem.itemData.myBoolArray.Height) == false)
+        if (BoundariesCheck(posX , posY , inventoryItem.myBoolArray.Width , inventoryItem.myBoolArray.Height) == false)
         {
             return false;
         }
 
-        if (OverlapCheck(posX , posY ,inventoryItem.itemData.myBoolArray.Width , inventoryItem.itemData.myBoolArray.Height , ref overlapItem) == false)
+        if (OverlapCheck(posX , posY ,inventoryItem.myBoolArray.Width , inventoryItem.myBoolArray.Height , ref overlapItem) == false)
         {
             overlapItem = null;
             return false;
@@ -66,11 +66,11 @@ public class ItemGrid : MonoBehaviour
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
         
-        for (int y = 0; y < inventoryItem.itemData.myBoolArray.Height; y++) // 열 먼저 순회
+        for (int y = 0; y < inventoryItem.myBoolArray.Height; y++) // 열 먼저 순회
         {
-            for (int x = 0; x < inventoryItem.itemData.myBoolArray.Width; x++) // 행 순회
+            for (int x = 0; x < inventoryItem.myBoolArray.Width; x++) // 행 순회
             {
-                if (inventoryItem.itemData.myBoolArray.GetValue(x, y))
+                if (inventoryItem.myBoolArray.GetValue(x, y))
                     _inventoryItemSlot[posX + x, posY + y] = inventoryItem;
             }
         }
@@ -89,8 +89,8 @@ public class ItemGrid : MonoBehaviour
     public Vector2 CalculatePositionOnGrid(InventoryItem inventoryItem, int posX, int posY)
     {
         Vector2 position = new Vector2();
-        position.x = posX * TILESIZEWIDHT + TILESIZEWIDHT * inventoryItem.itemData.myBoolArray.Width / 2;
-        position.y = -(posY * TILESIZEHEIGHT + TILESIZEHEIGHT * inventoryItem.itemData.myBoolArray.Height / 2);
+        position.x = posX * TILESIZEWIDHT + TILESIZEWIDHT * inventoryItem.myBoolArray.Width / 2;
+        position.y = -(posY * TILESIZEHEIGHT + TILESIZEHEIGHT * inventoryItem.myBoolArray.Height / 2);
         return position;
     }
 
@@ -137,11 +137,11 @@ public class ItemGrid : MonoBehaviour
 
     private void CleanGridReference(InventoryItem item)
     {
-        for (int y = 0; y < item.itemData.myBoolArray.Height; y++)
+        for (int y = 0; y < item.myBoolArray.Height; y++)
         {
-            for (int x = 0; x < item.itemData.myBoolArray.Width; x++)
+            for (int x = 0; x < item.myBoolArray.Width; x++)
             {
-                if (item.itemData.myBoolArray.GetValue(x,y))
+                if (item.myBoolArray.GetValue(x,y))
                     _inventoryItemSlot[item.onGridPositionX + x, item.onGridPositionY + y] = null;
             }
         }
