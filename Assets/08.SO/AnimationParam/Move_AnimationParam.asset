@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09bbeb018329d5468e92682d022611a, type: 3}
-  m_Name: IdleStateSO
+  m_Script: {fileID: 11500000, guid: e6c6d52babaf6724dbb7d35c79964524, type: 3}
+  m_Name: Move_AnimationParam
   m_EditorClassIdentifier: 
-  stateName: IDLE
-  className: KnightIdleState
-  stateAnimationParam: {fileID: 11400000, guid: defd731ba9e90b347be853038ef258e7, type: 2}
+  animationName: MOVE
+  hashValue: -643048756

@@ -24,7 +24,11 @@ public class Unit : Entity
     {
         StateMachine.CurrentStateUpdate();
     }
-    
+
+    public void ChangeState(string _stateName)
+    {
+        StateMachine.ChangeState(_stateName);
+    }
     
     
     
