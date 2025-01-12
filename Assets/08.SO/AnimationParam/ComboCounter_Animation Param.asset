@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09bbeb018329d5468e92682d022611a, type: 3}
-  m_Name: AttackStateSO
+  m_Script: {fileID: 11500000, guid: e6c6d52babaf6724dbb7d35c79964524, type: 3}
+  m_Name: ComboCounter_Animation Param
   m_EditorClassIdentifier: 
-  stateName: ATTACK
-  className: KnightAttackState
-  stateAnimationParam: {fileID: 11400000, guid: a80597b6926b89940b5d2886dbd82428, type: 2}
+  animationName: COMBOCOUNTER
+  hashValue: 1896778890

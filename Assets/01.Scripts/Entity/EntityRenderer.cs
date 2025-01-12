@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EntityRenderer : MonoBehaviour,IEntityComponent
 {
+    [SerializeField] private Transform root;
+    
     private SpriteRenderer _spriteRenderer;
     private Material _originMaterial;
     
@@ -27,7 +29,7 @@ public class EntityRenderer : MonoBehaviour,IEntityComponent
         lookDirection *= -1;
         lookRight = !lookRight;
         
-        transform.Rotate(0,180 ,0);
+        root.Rotate(0,180 ,0);
     }
     
     

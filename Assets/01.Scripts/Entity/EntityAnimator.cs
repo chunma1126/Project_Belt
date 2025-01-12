@@ -41,9 +41,8 @@ public class EntityAnimator : MonoBehaviour,IEntityComponent
     
     #endregion
 
-    protected virtual void AnimationEnd() => OnAnimationEndEvent?.Invoke();
-    
-    protected virtual void AttackTrigger() => OnAttackEvent?.Invoke();
-    
+    public void AnimationEnd() => OnAnimationEndEvent?.Invoke();
+    public void AttackTrigger() => OnAttackEvent?.Invoke();
+
     
 }
