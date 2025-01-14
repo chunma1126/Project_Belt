@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    public const float TILESIZEWIDHT = 32;
-    public const float TILESIZEHEIGHT = 32;
-
+    public const float TILESIZEWIDHT = 64;
+    public const float TILESIZEHEIGHT = 64;
+    
     private RectTransform rectTransform;
 
     private Vector2 positionOnTheGrid = new Vector2();

@@ -25,7 +25,7 @@ public class EntityStateMachine
             }
             catch (Exception e)
             {
-                Debug.LogError("State is not find");
+                Debug.LogError("StateSO is not find");
             }
         }
     }

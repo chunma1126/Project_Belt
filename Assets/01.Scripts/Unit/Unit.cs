@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,9 @@ public class Unit : Entity
     public AnimationParamSO comboCounterParam;
     
     public float attackRadius;
-    public float attackSpeed;
     public float attackDuration;
-    
-    [Header("State Info")]
+        
+    [Header("StateSO Info")]
     public List<StateSO> stateList;
     private EntityStateMachine StateMachine;
                 
@@ -23,13 +23,9 @@ public class Unit : Entity
         StateMachine = new EntityStateMachine(stateList , this);
         StateMachine.Initialize("IDLE");
         
+        GetCompo<EntityStatController>().GetStat(StatType.AttackSpeed).AddStatCallback(HandleSetAttackSpeed);
     }
-    
-    private void Start()
-    {
-        
-    }
-
+     
     private void Update()
     {
         StateMachine.CurrentStateUpdate();
@@ -44,5 +40,10 @@ public class Unit : Entity
     {
         Target = _trm;
     }
-    
+
+    private void HandleSetAttackSpeed(float _amount)   
+    {
+        GetCompo<EntityAnimator>().SetParam(attackSpeedParam , _amount);
+    }
+
 }

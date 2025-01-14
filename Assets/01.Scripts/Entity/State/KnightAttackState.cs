@@ -1,14 +1,10 @@
-﻿using System.Linq;
-using Unity.Mathematics.Geometry;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 public class KnightAttackState : EntityState
 {
     private Unit knight;
 
     private float lastAttackTime;
-    private float attackSpeed;
     private float attackDuration;
 
     private int comboCount;
@@ -24,7 +20,6 @@ public class KnightAttackState : EntityState
         base.Enter();
         animator.OnAnimationEndEvent += TriggerCalled;
         
-        attackSpeed = knight.attackSpeed;
         attackDuration = knight.attackDuration;
         
         if (Time.time > lastAttackTime + attackDuration)
@@ -38,8 +33,7 @@ public class KnightAttackState : EntityState
             if(comboCount > 1)
                 comboCount = 0;
         }
-                
-        animator.SetParam(knight.attackSpeedParam , attackSpeed);
+                        
         animator.SetParam(knight.comboCounterParam , comboCount);
     }
 

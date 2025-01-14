@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DamageCaster : MonoBehaviour,IEntityComponent
@@ -11,10 +10,12 @@ public class DamageCaster : MonoBehaviour,IEntityComponent
     private Collider2D[] targets;
 
     private EntityAnimator entityAnimator;
+    private EntityStatController statController;
     
     public void Initialize(Entity _entity)
     {
         entityAnimator = _entity.GetCompo<EntityAnimator>();
+        statController = _entity.GetCompo<EntityStatController>();
     }
     
     private void Start()
@@ -39,8 +40,8 @@ public class DamageCaster : MonoBehaviour,IEntityComponent
             {
                 ActionData actionData = new ActionData
                 {
-                    damageAmount = 1,
-                    knockbackPower = 10f,
+                    damageAmount = statController.GetValue(StatType.Attack),
+                    knockbackPower = 1f,
                     hitPoint = item.point,
                     hitNormal = item.normal
                 };

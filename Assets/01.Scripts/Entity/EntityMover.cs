@@ -7,22 +7,26 @@ public class EntityMover : MonoBehaviour,IEntityComponent
     private Entity entity;
     private EntityRenderer renderer;
     
+    private EntityStatController _entityStatController;
+    
     public void Initialize(Entity _entity)
     {
         entity = _entity;
 
         rigidbody2D = GetComponent<Rigidbody2D>();
         renderer = entity.GetCompo<EntityRenderer>();
+        _entityStatController = entity.GetCompo<EntityStatController>();
     }
 
-    public void Move(float _speed)
+    public void Move(float _direction)
     {
-        float testSpeed = 5;
-        rigidbody2D.linearVelocityX = _speed * testSpeed;
+        float speed = _entityStatController.GetValue(StatType.MoveSpeed);
         
-        if(_speed < 0 && renderer.lookRight)
+        rigidbody2D.linearVelocityX = _direction * speed;
+        
+        if(_direction < 0 && renderer.lookRight)
             renderer.Flip();
-        else if(_speed > 0 && renderer.lookRight == false)
+        else if(_direction > 0 && renderer.lookRight == false)
             renderer.Flip();
         
     }
