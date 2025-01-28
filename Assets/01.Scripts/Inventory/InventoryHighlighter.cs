@@ -7,7 +7,6 @@ public class InventoryHighlighter : MonoBehaviour
 {
     [SerializeField] private Transform root;
     [SerializeField] private RectTransform highlighter;
-    [SerializeField] private Image highlighterImage;
 
     private List<RectTransform> highlightList;
     [SerializeField] private int highlightCount;
@@ -29,7 +28,7 @@ public class InventoryHighlighter : MonoBehaviour
     {
         MyBoolArray boolArray = targetItem.myBoolArray;
         int index = 0;
-
+        
         for (int i = 0; i < boolArray.Width; i++)
         {
             for (int j = 0; j < boolArray.Height; j++)
@@ -38,17 +37,16 @@ public class InventoryHighlighter : MonoBehaviour
                 {
                     highlightList[index].gameObject.SetActive(true);
 
-                    highlightList[index].anchoredPosition =
+                    /*highlightList[index].anchoredPosition =
                         new Vector2(targetItem.onGridPositionX * ItemGrid.TILESIZEWIDHT, targetItem.onGridPositionY * ItemGrid.TILESIZEHEIGHT) +
-                        new Vector2(ItemGrid.TILESIZEWIDHT * i, ItemGrid.TILESIZEHEIGHT * j) +
-                        (itemGrid.transform as RectTransform).anchoredPosition;
+                        new Vector2(ItemGrid.TILESIZEWIDHT * i , ItemGrid.TILESIZEHEIGHT * j ) +
+                        (itemGrid.transform as RectTransform).anchoredPosition;*/
 
                     index++;
                 }
             }
         }
         
-        // 사용하지 않는 하이라이트는 비활성화
         for (int i = index; i < highlightList.Count; i++)
         {
             highlightList[i].gameObject.SetActive(false);
@@ -59,26 +57,27 @@ public class InventoryHighlighter : MonoBehaviour
     {
         MyBoolArray boolArray = targetItem.myBoolArray;
         int index = 0;
-
+        
+        Vector2 offset = CalculatorHighlightOffSet(boolArray.Width , boolArray.Height);
+        
         for (int i = 0; i < boolArray.Width; i++)
         {
             for (int j = 0; j < boolArray.Height; j++)
             {
                 if (boolArray.GetValue(i, j))
                 {
+                   
                     Vector2 pos = targetGrid.CalculatePositionOnGrid(
                         targetItem,
-                        targetItem.onGridPositionX + i -1,
-                        targetItem.onGridPositionY + j -1
+                        targetItem.onGridPositionX + i - 1,
+                        targetItem.onGridPositionY + j - 1
                     );
                     highlightList[index].gameObject.SetActive(true);
-                    highlightList[index].localPosition = pos;
-                    index++;
+                    highlightList[index].localPosition = pos + offset;
                 }
             }
         }
         
-        // 사용하지 않는 하이라이트는 비활성화
         for (int i = index; i < highlightList.Count; i++)
         {
             highlightList[i].gameObject.SetActive(false);
@@ -89,27 +88,29 @@ public class InventoryHighlighter : MonoBehaviour
     {
         MyBoolArray boolArray = targetItem.myBoolArray;
         int index = 0;
-
+        
+        Vector2 offset = CalculatorHighlightOffSet(boolArray.Width , boolArray.Height);
+        
         for (int i = 0; i < boolArray.Width; i++)
         {
             for (int j = 0; j < boolArray.Height; j++)
             {
                 if (boolArray.GetValue(i, j))
                 {
+                   
                     Vector2 pos = targetGrid.CalculatePositionOnGrid
                     (
                         targetItem,
-                        posX + i -1,
-                        posY + j  -1
+                        posX + i - 1,
+                        posY + j - 1
                     );
                     highlightList[index].gameObject.SetActive(true);
-                    highlightList[index].localPosition = pos;
+                    highlightList[index].localPosition = pos + offset;
                     index++;
                 }
             }
         }
         
-        // 사용하지 않는 하이라이트는 비활성화
         for (int i = index; i < highlightList.Count; i++)
         {
             highlightList[i].gameObject.SetActive(false);
@@ -140,6 +141,39 @@ public class InventoryHighlighter : MonoBehaviour
         }
     }
 
+    private Vector2 CalculatorHighlightOffSet(int x , int y)
+    {
+        if (x == 2 && y == 2)
+            return Vector2.zero;
+                
+        Vector2 offset = new Vector2();
+
+        float offsetSizeWidth = ItemGrid.TILESIZEWIDHT / 2;
+        float offsetSizeHeight = ItemGrid.TILESIZEHEIGHT / 2;
+        
+        if (x == 1)
+            offset.x = -offsetSizeWidth;
+        if (y == 1)
+            offset.y = -offsetSizeHeight;
+
+        int xCount = x - 2;
+
+        for (int i = 0; i < xCount; i++)
+        {
+            offset.x -= offsetSizeWidth;
+        }
+        
+        int yCount = y - 2;
+
+        for (int i = 0; i < yCount; i++)
+        {
+            offset.y += offsetSizeWidth;
+        }
+        
+        
+        return offset;
+    }
+    
     public void SetRotation(Quaternion _rotation)
     {
         /*foreach (var highlight in highlightList)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3471771117212150470}
   - component: {fileID: 9209563873331952323}
   m_Layer: 5
-  m_Name: Item
+  m_Name: Item 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,9 +89,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBoolArray:
-    Width: 3
-    Height: 3
+    Width: 4
+    Height: 4
     serializedGrid:
+    - value: 1
+    - value: 1
+    - value: 1
+    - value: 1
+    - value: 1
+    - value: 1
+    - value: 1
     - value: 1
     - value: 1
     - value: 1
