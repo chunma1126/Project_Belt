@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
@@ -13,6 +14,10 @@ public class InventoryItem : MonoBehaviour
     
     public int itemRotation;
 
+    [SerializeField] private StatSO statSo;
+    public StatSO StatSo => statSo;
+    
+    
     private void Start()
     {
         myBoolArray.LoadGridFromSerialized();
@@ -24,12 +29,7 @@ public class InventoryItem : MonoBehaviour
         };
         GetComponent<RectTransform>().sizeDelta = size;
     }
-
-    public void Set()
-    {
-        
-    }
-
+       
     public void Rotate()
     {
         itemRotation += 90;

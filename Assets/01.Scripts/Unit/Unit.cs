@@ -15,7 +15,7 @@ public class Unit : Entity
     [Header("StateSO Info")]
     public List<StateSO> stateList;
     private EntityStateMachine StateMachine;
-                
+    
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +44,16 @@ public class Unit : Entity
     private void HandleSetAttackSpeed(float _amount)   
     {
         GetCompo<EntityAnimator>().SetParam(attackSpeedParam , _amount);
+    }
+
+    public void AddStat(StatSO _newStat)
+    {
+        GetCompo<EntityStatController>().AddValue(_newStat.StatType , _newStat.GetValue());
+    }
+    
+    public void RemoveStat(StatSO _newStat)
+    {
+        GetCompo<EntityStatController>().RemoveValue(_newStat.StatType , _newStat.GetValue());
     }
 
 }

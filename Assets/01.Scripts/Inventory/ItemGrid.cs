@@ -6,6 +6,8 @@ public class ItemGrid : MonoBehaviour
 {
     public const float TILESIZEWIDHT = 64;
     public const float TILESIZEHEIGHT = 64;
+
+    public static readonly Vector2 TILESIZE = new Vector2(TILESIZEWIDHT , TILESIZEHEIGHT);
     
     private RectTransform rectTransform;
 
@@ -16,7 +18,9 @@ public class ItemGrid : MonoBehaviour
 
     [SerializeField] private int gridSizeWidth = 20;
     [SerializeField] private int gridSizeHeight = 10;
-
+    
+    public Unit owner;
+    
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -82,7 +86,11 @@ public class ItemGrid : MonoBehaviour
         Vector2 position = CalculatePositionOnGrid(inventoryItem, posX, posY);
 
         rectTransform.localPosition = position;
-
+        
+        //addStatLogic
+        owner.AddStat(inventoryItem.StatSo);        
+        
+        
         return true;
     }
 
@@ -130,7 +138,8 @@ public class ItemGrid : MonoBehaviour
         
         CleanGridReference(toReturn);
         
-      
+        //removeStatLogic
+        owner.RemoveStat(toReturn.StatSo);
         
         return toReturn;
     }

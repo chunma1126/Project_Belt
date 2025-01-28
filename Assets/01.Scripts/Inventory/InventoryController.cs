@@ -77,7 +77,7 @@ public class InventoryController : MonoBehaviour
             if (itemToHighlight != null)
             {
                 inventoryHighlighter.Show(true);
-                inventoryHighlighter.SetSize(itemToHighlight);
+                inventoryHighlighter.SetSize(itemToHighlight,selectedItemGrid);
                 inventoryHighlighter.SetPosition(selectedItemGrid , itemToHighlight);
             }
             else
@@ -92,7 +92,7 @@ public class InventoryController : MonoBehaviour
                 selectItem.myBoolArray.Width , selectItem.myBoolArray.Height));
             
             
-            inventoryHighlighter.SetSize(selectItem);
+            inventoryHighlighter.SetSize(selectItem,selectedItemGrid);
             inventoryHighlighter.SetPosition(selectedItemGrid , selectItem , positionOnGrid.x , positionOnGrid.y);
         }
     }

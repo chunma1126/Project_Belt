@@ -6,9 +6,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     private Dictionary<Type, IEntityComponent> Components;
-
-    
-    
+        
     protected virtual void Awake()
     {
         Components = new Dictionary<Type, IEntityComponent>();

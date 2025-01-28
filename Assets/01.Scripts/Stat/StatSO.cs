@@ -7,7 +7,7 @@ public class StatSO : ScriptableObject
     public StatType StatType;
 
     public float baseAmount;
-    private float modifier;
+    public float modifier;
     
     private event Action<float> OnChangeStatAction;
     

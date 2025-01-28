@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3244622203517571467, guid: 1730a4e2456479647a039a0797aab5be, type: 3}
+  m_Sprite: {fileID: 7021786519927762060, guid: 4d03f1753843aab4489d450bf61713db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -94,14 +94,15 @@ MonoBehaviour:
     serializedGrid:
     - value: 1
     - value: 0
+    - value: 1
+    - value: 1
+    - value: 0
     - value: 0
     - value: 1
     - value: 0
-    - value: 0
     - value: 1
-    - value: 1
-    - value: 1
-  itemIcon: {fileID: 3244622203517571467, guid: 1730a4e2456479647a039a0797aab5be, type: 3}
+  itemIcon: {fileID: 7021786519927762060, guid: 4d03f1753843aab4489d450bf61713db, type: 3}
   onGridPositionX: 0
   onGridPositionY: 0
   itemRotation: 0
+  statSo: {fileID: 11400000, guid: c2e2ce14afeae11438e267efaebb481e, type: 2}
