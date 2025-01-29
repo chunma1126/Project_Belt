@@ -29,6 +29,7 @@ public class StatSO : ScriptableObject
     public void Initialize()
     {
         OnChangeStatAction?.Invoke(baseAmount + modifier);
+        modifier = 0;
     }
     
     public void Add(float _amount)

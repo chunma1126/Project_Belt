@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 466bce91949f5e3419913ebf0953e06a, type: 3}
-  m_Name: Item_Stat_Attack
+  m_Name: Test_Item_Stat
   m_EditorClassIdentifier: 
-  StatType: 0
-  baseAmount: 20
-  useMaxValue: 1
-  maxValue: 50
+  StatType: 3
+  baseAmount: 16.79
+  modifier: 0
+  useMaxValue: 0
+  maxValue: 0

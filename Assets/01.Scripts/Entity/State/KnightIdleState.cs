@@ -3,9 +3,11 @@ using UnityEngine;
 public class KnightIdleState : EntityState
 {
     private Unit knight;
-
+    
     private float idleTime;
     private float timer;
+
+    private readonly float DEFULAT_IDLE_TIME = 2.5f;
     
     public KnightIdleState(Entity entity, AnimationParamSO animationParam) : base(entity, animationParam)
     {
@@ -15,8 +17,10 @@ public class KnightIdleState : EntityState
     public override void Enter()
     {
         base.Enter();
-
-        idleTime = Random.Range(0.2f , 1.5f);
+        idleTime = DEFULAT_IDLE_TIME;
+        idleTime -= entity.GetCompo<EntityStatController>().GetValue(StatType.AttackSpeed);
+        
+        Debug.Log(idleTime);
         
     }
     

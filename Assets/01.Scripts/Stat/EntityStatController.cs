@@ -10,7 +10,7 @@ public enum StatType
     MoveSpeed,//움직이는 속도
     AttackSpeed,//공격 속도
     Health,//체력
-    Recovery,//회복력
+    ActiveSkillTime,
 }
 
 public class EntityStatController : MonoBehaviour,IEntityComponent
