@@ -16,7 +16,7 @@ public class InventoryController : MonoBehaviour
     }
     
     public InventoryItem selectItem;
-    private InventoryItem overlapItem;
+    public InventoryItem overlapItem;
     private RectTransform rectTransform;
 
     private Vector2Int oldPositon;
@@ -38,7 +38,7 @@ public class InventoryController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             CreateRandomItem();
-            inventoryHighlighter.SetRotation(selectItem.GetRotate());
+            
         }
         
         if (Input.GetKeyDown(KeyCode.R))
@@ -46,7 +46,7 @@ public class InventoryController : MonoBehaviour
             if(selectItem == null)return;
             
             selectItem.Rotate();
-            //inventoryHighlighter.SetRotation(selectItem.GetRotate());
+            
         }
         
         if (selectedItemGrid == null)
@@ -67,7 +67,7 @@ public class InventoryController : MonoBehaviour
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
         
-        if(positionOnGrid == oldPositon)return;
+        //if(positionOnGrid == oldPositon)return;
         
         oldPositon = positionOnGrid;
         if (selectItem == null)
@@ -156,7 +156,7 @@ public class InventoryController : MonoBehaviour
         if (selectItem != null)
         {
             rectTransform = selectItem.GetComponent<RectTransform>();
-            inventoryHighlighter.SetRotation(selectItem.GetRotate());
+           
         }
     }
 

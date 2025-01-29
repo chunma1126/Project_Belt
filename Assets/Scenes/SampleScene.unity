@@ -606,7 +606,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectItem: {fileID: 0}
-  itemPrefab: {fileID: 2573826789360307965, guid: 039fb45bb9435974eb7d01c07b60c72c, type: 3}
+  overlapItem: {fileID: 0}
+  itemPrefab: {fileID: 2573826789360307965, guid: 2d2bffddd29d9b8449dc60f66512a867, type: 3}
   canvasTransform: {fileID: 1422254381}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -2757,7 +2758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 708, y: 737}
+  m_AnchoredPosition: {x: 667.81, y: 900}
   m_SizeDelta: {x: 640, y: 320}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1297660422

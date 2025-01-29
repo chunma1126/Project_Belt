@@ -140,7 +140,8 @@ public class InventoryHighlighter : MonoBehaviour
             }
         }
     }
-
+    
+    //x가 1일때 뭔가 이상함 y는 3으로 맞추고 ㅇㅇ..
     private Vector2 CalculatorHighlightOffSet(int x , int y)
     {
         if (x == 2 && y == 2)
@@ -150,35 +151,36 @@ public class InventoryHighlighter : MonoBehaviour
 
         float offsetSizeWidth = ItemGrid.TILESIZEWIDHT / 2;
         float offsetSizeHeight = ItemGrid.TILESIZEHEIGHT / 2;
-        
+
         if (x == 1)
-            offset.x = -offsetSizeWidth;
+        {
+            offset.x += offsetSizeWidth;
+        }
+        else
+        {
+            int xCount = x - 2;
+
+            for (int i = 0; i < xCount; i++)
+            {
+                offset.x -= offsetSizeWidth;
+            }
+        }
+        
         if (y == 1)
             offset.y = -offsetSizeHeight;
-
-        int xCount = x - 2;
-
-        for (int i = 0; i < xCount; i++)
+        else
         {
-            offset.x -= offsetSizeWidth;
-        }
-        
-        int yCount = y - 2;
+            int yCount = y - 2;
 
-        for (int i = 0; i < yCount; i++)
-        {
-            offset.y += offsetSizeWidth;
+            for (int i = 0; i < yCount; i++)
+            {
+                offset.y += offsetSizeWidth;
+            }
         }
-        
+                
         
         return offset;
     }
     
-    public void SetRotation(Quaternion _rotation)
-    {
-        /*foreach (var highlight in highlightList)
-        {
-            highlight.rotation = _rotation;
-        }*/
-    }
+    
 }

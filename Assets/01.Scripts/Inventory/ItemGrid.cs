@@ -47,14 +47,14 @@ public class ItemGrid : MonoBehaviour
         return tileGridPosition;
     }
 
-    public bool PlaceItem(InventoryItem inventoryItem , int posX , int posY,ref InventoryItem overlapItem)
+    public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapItem)
     {
-        if (BoundariesCheck(posX , posY , inventoryItem.myBoolArray.Width , inventoryItem.myBoolArray.Height) == false)
+        if (BoundariesCheck(posX, posY, inventoryItem.myBoolArray.Width, inventoryItem.myBoolArray.Height) == false)
         {
             return false;
         }
 
-        if (OverlapCheck(posX , posY ,inventoryItem.myBoolArray.Width , inventoryItem.myBoolArray.Height , ref overlapItem) == false)
+        if (OverlapCheck(posX, posY, inventoryItem, ref overlapItem) == false)  // 시그니처 수정
         {
             overlapItem = null;
             return false;
@@ -64,32 +64,27 @@ public class ItemGrid : MonoBehaviour
         {
             CleanGridReference(overlapItem);
         }
-        
-        
+    
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform);
-        
-        for (int y = 0; y < inventoryItem.myBoolArray.Height; y++) // 열 먼저 순회
+    
+        for (int y = 0; y < inventoryItem.myBoolArray.Height; y++)
         {
-            for (int x = 0; x < inventoryItem.myBoolArray.Width; x++) // 행 순회
+            for (int x = 0; x < inventoryItem.myBoolArray.Width; x++)
             {
                 if (inventoryItem.myBoolArray.GetValue(x, y))
                     _inventoryItemSlot[posX + x, posY + y] = inventoryItem;
             }
         }
-        
 
         inventoryItem.onGridPositionX = posX;
         inventoryItem.onGridPositionY = posY;
-        
+    
         Vector2 position = CalculatePositionOnGrid(inventoryItem, posX, posY);
-
         rectTransform.localPosition = position;
-        
-        //addStatLogic
+    
         owner.AddStat(inventoryItem.StatSo);        
-        
-        
+    
         return true;
     }
 
@@ -102,30 +97,32 @@ public class ItemGrid : MonoBehaviour
     }
 
     
-    private bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
+    private bool OverlapCheck(int posX, int posY, InventoryItem item, ref InventoryItem overlapItem)
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < item.myBoolArray.Width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < item.myBoolArray.Height; y++)
             {
-                if (_inventoryItemSlot[posX + x , posY + y] != null)
+                if (item.myBoolArray.GetValue(x, y))  // 아이템의 실제 모양에서만 검사
                 {
-                    if (overlapItem == null)
+                    if (_inventoryItemSlot[posX + x, posY + y] != null)
                     {
-                        overlapItem = _inventoryItemSlot[posX + x , posY + y];
-                    }
-                    else
-                    {
-                        if (overlapItem != _inventoryItemSlot[posX + x , posY + y])
+                        if (overlapItem == null)
                         {
-                            return false;
+                            overlapItem = _inventoryItemSlot[posX + x, posY + y];
+                        }
+                        else
+                        {
+                            if (overlapItem != _inventoryItemSlot[posX + x, posY + y])
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
             }
         }
-        
-        
+    
         return true;
     }
 

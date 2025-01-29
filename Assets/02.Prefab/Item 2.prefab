@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7021786519927762060, guid: 4d03f1753843aab4489d450bf61713db, type: 3}
+  m_Sprite: {fileID: 1127233070, guid: d411040c7d4ee2747a4335e00a992781, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,25 +90,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBoolArray:
     Width: 4
-    Height: 4
+    Height: 1
     serializedGrid:
     - value: 1
     - value: 1
     - value: 1
     - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-    - value: 1
-  itemIcon: {fileID: 7021786519927762060, guid: 4d03f1753843aab4489d450bf61713db, type: 3}
+  itemIcon: {fileID: 1127233070, guid: d411040c7d4ee2747a4335e00a992781, type: 3}
   onGridPositionX: 0
   onGridPositionY: 0
   itemRotation: 0

@@ -39,7 +39,7 @@ public class InventoryItem : MonoBehaviour
         myBoolArray.RotateGrid();
     }
 
-    public Quaternion GetRotate() => transform.rotation;
+  
     public void Test()
     {
         for (int y = 0; y < myBoolArray.Height; y++) // 행(row)을 먼저 순회
