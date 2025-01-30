@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ItemGrid))]
-public class GridInteract : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
+public class GridInteract : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     private InventoryController _inventoryController;
     private ItemGrid _itemGrid;
@@ -32,19 +32,19 @@ public class GridInteract : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     {
         _inventoryController.SelectedItemGrid = null;
     }
-    
-    public void OnPointerClick(PointerEventData eventData)
+
+    public void TogglePanel()
     {
         isOpen = !isOpen;
-        
+                
         if (isOpen)
         {
-            rectTransform.DOMoveX(openXPos , duration);
+            rectTransform.DOMoveX(openXPos , duration).SetEase(Ease.InCubic);
         }
         else
         {
-            rectTransform.DOMoveX(startPos.x , duration);
-        }
-
+            rectTransform.DOMoveX(startPos.x , duration).SetEase(Ease.OutCubic);
+        }        
     }
+    
 }

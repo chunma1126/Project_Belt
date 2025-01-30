@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class InventoryController : MonoBehaviour
 {
@@ -22,6 +20,7 @@ public class InventoryController : MonoBehaviour
     private Vector2Int oldPositon;
     private InventoryItem itemToHighlight;
     private InventoryHighlighter inventoryHighlighter;
+    private GridInteract gridInteract;
     
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Transform canvasTransform;
@@ -29,6 +28,7 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         inventoryHighlighter = GetComponent<InventoryHighlighter>();
+        gridInteract = GetComponent<GridInteract>();
     }
 
     private void Update()
@@ -66,7 +66,7 @@ public class InventoryController : MonoBehaviour
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
-        
+                
         //if(positionOnGrid == oldPositon)return;
         
         oldPositon = positionOnGrid;

@@ -19,9 +19,6 @@ public class KnightIdleState : EntityState
         base.Enter();
         idleTime = DEFULAT_IDLE_TIME;
         idleTime -= entity.GetCompo<EntityStatController>().GetValue(StatType.AttackSpeed);
-        
-        Debug.Log(idleTime);
-        
     }
     
     public override void Update()

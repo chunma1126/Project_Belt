@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class EntityRenderer : MonoBehaviour,IEntityComponent
@@ -12,6 +13,8 @@ public class EntityRenderer : MonoBehaviour,IEntityComponent
     
     public int lookDirection = 1;
     public bool lookRight = true;
+
+    private static readonly int OutlineThicknessID = Shader.PropertyToID("_OutlineThickness");
     
     public void Initialize(Entity _entity)
     {
@@ -49,8 +52,11 @@ public class EntityRenderer : MonoBehaviour,IEntityComponent
         yield return new WaitForSeconds(_time);
         _spriteRenderer.material = _originMaterial;
     }
-    
-    
+
+    public void SelectEntity(bool _isSelect)
+    {
+        _originMaterial.SetFloat(OutlineThicknessID, _isSelect ? 1 : 0);
+    }
     
     
 }

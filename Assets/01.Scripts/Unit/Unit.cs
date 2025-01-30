@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,6 +22,11 @@ public abstract class Unit : Entity
     private float activeSkillTimer = 0;
     public UnityEvent ActiveSkillOnEvent;
     public UnityEvent ActiveSkillOffEvent;
+
+    [SerializeField] private GridInteract inventory;
+
+    private bool isSelect;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -40,11 +45,9 @@ public abstract class Unit : Entity
     protected virtual void Update()
     {
         StateMachine.CurrentStateUpdate();
-
-
         UpdateActiveSkill();
     }
-
+    
     private void UpdateActiveSkill()
     {
         //전투중이 아닐때는 안흘러가야지 그거 막아야함.
@@ -81,6 +84,15 @@ public abstract class Unit : Entity
         activeSkillTimer = 0;
     }
 
+    public void SelectUnit()
+    {
+        isSelect = !isSelect;
+        
+        inventory.TogglePanel();
+        GetCompo<EntityRenderer>().SelectEntity(isSelect);
+        
+    }
+    
     public void AddStat(StatSO _newStat)
     {
         GetCompo<EntityStatController>().AddValue(_newStat.StatType , _newStat.GetValue());
@@ -90,5 +102,4 @@ public abstract class Unit : Entity
     {
         GetCompo<EntityStatController>().RemoveValue(_newStat.StatType , _newStat.GetValue());
     }
-        
 }

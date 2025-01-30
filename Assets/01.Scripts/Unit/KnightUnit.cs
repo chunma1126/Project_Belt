@@ -1,18 +1,15 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.EventSystems;
 
 public class KnightUnit : Unit
 {
     //기사는 공속이 빨라지면서 대미지가 쎄질거임
     [Header("ActiveSkill Info")] 
-   
     public float period = 7;
     public StatSO activeSkillAttackSpeedStat;
     public StatSO activeSkillAttackStat;
-
+    
     private EntityStatController _statController;
     
     private void Start()
@@ -43,8 +40,5 @@ public class KnightUnit : Unit
         _statController.RemoveValue(activeSkillAttackSpeedStat.StatType , activeSkillAttackSpeedStat.GetValue());  
         _statController.RemoveValue(activeSkillAttackStat.StatType , activeSkillAttackStat.GetValue()); 
     }
-    
-    
-    
-    
+
 }

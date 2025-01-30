@@ -22,10 +22,19 @@ public class InventoryItem : MonoBehaviour
     {
         myBoolArray.LoadGridFromSerialized();
         GetComponent<Image>().sprite = itemIcon;
-        Vector2 size = new Vector2
+        /*Vector2 size = new Vector2
         {
             x = myBoolArray.Width * ItemGrid.TILESIZEWIDHT,
             y = myBoolArray.Height * ItemGrid.TILESIZEHEIGHT
+        };
+        GetComponent<RectTransform>().sizeDelta = size;*/
+
+        int offsetSize = Mathf.Max(myBoolArray.Width , myBoolArray.Height);
+        
+        Vector2 size = new Vector2
+        {
+            x = ItemGrid.TILESIZEWIDHT * offsetSize,
+            y = ItemGrid.TILESIZEHEIGHT * offsetSize
         };
         GetComponent<RectTransform>().sizeDelta = size;
     }
