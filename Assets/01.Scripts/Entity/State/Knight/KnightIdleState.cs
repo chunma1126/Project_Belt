@@ -11,7 +11,7 @@ public class KnightIdleState : EntityState
     
     public KnightIdleState(Entity entity, AnimationParamSO animationParam) : base(entity, animationParam)
     {
-        knight = entity as Unit;
+        knight = entity as KnightUnit;
     }
 
     public override void Enter()

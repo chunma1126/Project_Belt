@@ -1,15 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EntityMover : MonoBehaviour,IEntityComponent
 {
     [Header("GroundCheck info")] 
     public LayerMask whatIsGround;
     public float checkGroundDistance;
+    public Vector2 checkGroundSize;
 
     [Header("WallCheck info")] 
     public Transform checkWall;
-    public float checkWallDistance;
+    public Vector2 checkWallSize;
     
     private Rigidbody2D rigidbody2D;
     
@@ -65,12 +67,16 @@ public class EntityMover : MonoBehaviour,IEntityComponent
         }
     }
 
-    public bool IsGround() =>  Physics2D.Raycast(transform.position , Vector2.down , checkGroundDistance,whatIsGround);
-    public bool IsWall(int _direction) => Physics2D.Raycast(checkWall.position , Vector2.right * _direction ,checkWallDistance, whatIsGround);
+    public bool IsGround() => 
+        Physics2D.BoxCast(transform.position, checkGroundSize, 0f, Vector2.down, checkGroundDistance, whatIsGround);
+
+    public bool IsWall(int _direction) => Physics2D.BoxCast(checkWall.position, checkWallSize, 0f, Vector2.right, 0, whatIsGround);
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(transform.position , Vector2.down * checkGroundDistance);
-        Gizmos.DrawRay(checkWall.position , Vector2.right * checkWallDistance);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(transform.position + Vector3.down * checkGroundDistance, checkGroundSize);
+        
+        Gizmos.DrawWireCube(checkWall.position + Vector3.right, checkWallSize);
     }
 }

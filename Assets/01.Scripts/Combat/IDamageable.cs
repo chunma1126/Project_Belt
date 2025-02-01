@@ -1,10 +1,9 @@
-using System;
-using UnityEngine;
-
-public interface IDamageable
+namespace Combat
 {
-        
-    public void TakeDamage(ActionData _actionData);
-    public void Dead();
-    
+    public interface IDamageable
+    {
+        public void TakeDamage(ActionData _actionData);
+        public void Dead();
+
+    }
 }

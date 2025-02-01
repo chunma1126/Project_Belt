@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: a08ab6937e0d53d458ccb2986bfdbc8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6483824389624476358
+    second: Fireball Explosion_0
+  - first:
+      213: -7321066583854416430
+    second: Fireball Explosion_1
+  - first:
+      213: -7372609873754497005
+    second: Fireball Explosion_2
+  - first:
+      213: -4317229737265965456
+    second: Fireball Explosion_3
+  - first:
+      213: -1038462258324677678
+    second: Fireball Explosion_4
+  - first:
+      213: -8971372300158204342
+    second: Fireball Explosion_5
+  - first:
+      213: 3440315120068278800
+    second: Fireball Explosion_6
+  - first:
+      213: -26469742967120325
+    second: Fireball Explosion_7
+  - first:
+      213: 5874058735047230937
+    second: Fireball Explosion_8
+  - first:
+      213: -7281885542740041739
+    second: Fireball Explosion_9
+  - first:
+      213: -2445056809986848636
+    second: Fireball Explosion_10
+  - first:
+      213: -4958437814772324734
+    second: Fireball Explosion_11
+  - first:
+      213: 1389930031446745360
+    second: Fireball Explosion_12
+  - first:
+      213: -1963917271810080615
+    second: Fireball Explosion_13
+  - first:
+      213: 1448811103411489426
+    second: Fireball Explosion_14
+  - first:
+      213: -8446997324063201681
+    second: Fireball Explosion_15
+  - first:
+      213: -6119302498149780944
+    second: Fireball Explosion_16
+  - first:
+      213: -6528833064340317501
+    second: Fireball Explosion_17
+  - first:
+      213: -7810042516618015607
+    second: Fireball Explosion_18
+  - first:
+      213: -3721671849436234960
+    second: Fireball Explosion_19
+  - first:
+      213: 1108297568714862044
+    second: Fireball Explosion_20
+  - first:
+      213: -2536123946038482063
+    second: Fireball Explosion_21
+  - first:
+      213: -8381128229900118433
+    second: Fireball Explosion_22
+  - first:
+      213: 5230592658888302809
+    second: Fireball Explosion_23
+  - first:
+      213: 6176815998752379359
+    second: Fireball Explosion_24
+  - first:
+      213: -6560341430804605696
+    second: Fireball Explosion_25
+  - first:
+      213: -4717376074041034170
+    second: Fireball Explosion_26
+  - first:
+      213: -1829011928194251795
+    second: Fireball Explosion_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fireball Explosion_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2b499fdeb2bf950800000000000000
+      internalID: 6483824389624476358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireball Explosion_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ddff5c0bb8566a90800000000000000
+      internalID: -7321066583854416430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireball Explosion_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310635fa16a3fa990800000000000000
+      internalID: -7372609873754497005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireball Explosion_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07652887d6e1614c0800000000000000
+      internalID: -4317229737265965456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireball Explosion_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db58ebf314a691f0800000000000000
+      internalID: -1038462258324677678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireball Explosion_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a468a45ec684f7380800000000000000
+      internalID: -8971372300158204342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 88edee6c992985740aea747f443d350c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Fireball Explosion_0: 6483824389624476358
+      Fireball Explosion_1: -7321066583854416430
+      Fireball Explosion_2: -7372609873754497005
+      Fireball Explosion_3: -4317229737265965456
+      Fireball Explosion_4: -1038462258324677678
+      Fireball Explosion_5: -8971372300158204342
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

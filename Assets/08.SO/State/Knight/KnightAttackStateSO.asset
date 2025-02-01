@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a09bbeb018329d5468e92682d022611a, type: 3}
-  m_Name: AttackStateSO
+  m_Name: KnightAttackStateSO
   m_EditorClassIdentifier: 
   stateName: ATTACK
   className: KnightAttackState

@@ -1,62 +1,66 @@
 using UnityEngine;
 
-public class DamageCaster : MonoBehaviour,IEntityComponent
+namespace Combat.Caster
 {
-    [SerializeField] private LayerMask whatIsTarget;
-    
-    [SerializeField] private Transform damageCasterTrm;
-    [SerializeField] private float radius = 1f;
 
-    private Collider2D[] targets;
-
-    private EntityAnimator entityAnimator;
-    private EntityStatController statController;
-    
-    public void Initialize(Entity _entity)
+    public class DamageCaster : MonoBehaviour, IEntityComponent, IAttackable
     {
-        entityAnimator = _entity.GetCompo<EntityAnimator>();
-        statController = _entity.GetCompo<EntityStatController>();
-    }
-    
-    private void Start()
-    {
-        targets = new Collider2D[5];
+        [SerializeField] private LayerMask whatIsTarget;
 
-        entityAnimator.OnAttackEvent += Cast;
-    }
+        [SerializeField] private Transform damageCasterTrm;
+        [SerializeField] private float radius = 1f;
 
-    private void OnDestroy()
-    {
-        entityAnimator.OnAttackEvent -= Cast;
-    }
+        private Collider2D[] targets;
 
-    private void Cast()
-    {
-        RaycastHit2D[] targets = Physics2D.CircleCastAll(damageCasterTrm.position, radius, Vector2.zero, 0f, whatIsTarget);
-        
-        foreach (var item in targets)
+        private EntityAnimator entityAnimator;
+        private EntityStatController statController;
+
+        public void Initialize(Entity _entity)
         {
-            if (item.collider.TryGetComponent(out IDamageable health))
+            entityAnimator = _entity.GetCompo<EntityAnimator>();
+            statController = _entity.GetCompo<EntityStatController>();
+        }
+
+        private void Start()
+        {
+            targets = new Collider2D[5];
+
+            entityAnimator.OnAttackEvent += Cast;
+        }
+
+        private void OnDestroy()
+        {
+            entityAnimator.OnAttackEvent -= Cast;
+        }
+
+        public void Cast()
+        {
+            RaycastHit2D[] targets =
+                Physics2D.CircleCastAll(damageCasterTrm.position, radius, Vector2.zero, 0f, whatIsTarget);
+
+            foreach (var item in targets)
             {
-                ActionData actionData = new ActionData
+                if (item.collider.TryGetComponent(out IDamageable health))
                 {
-                    damageAmount = statController.GetValue(StatType.Attack),
-                    knockbackPower = 1f,
-                    hitPoint = item.point,
-                    hitNormal = item.normal
-                };
-                
-                health.TakeDamage(actionData);
+                    ActionData actionData = new ActionData
+                    {
+                        damageAmount = statController.GetValue(StatType.Attack),
+                        knockbackPower = 1f,
+                        hitPoint = item.point,
+                        hitNormal = item.normal
+                    };
+
+                    health.TakeDamage(actionData);
+                }
             }
         }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, radius);
+        }
+        
     }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red; 
-        Gizmos.DrawWireSphere(transform.position , radius);
-    }
-
-   
 }

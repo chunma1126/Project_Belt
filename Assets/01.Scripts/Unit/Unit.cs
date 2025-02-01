@@ -8,10 +8,9 @@ public abstract class Unit : Entity
     [Header("Combat info")]
     public Transform Target;
     public AnimationParamSO attackSpeedParam;
-    public AnimationParamSO comboCounterParam;
     
     public float attackRadius;
-    public float attackDuration;
+    
     
     [Header("StateSO Info")]
     public List<StateSO> stateList;

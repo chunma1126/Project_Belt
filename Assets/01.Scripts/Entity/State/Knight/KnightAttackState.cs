@@ -2,24 +2,22 @@
 
 public class KnightAttackState : EntityState
 {
-    private Unit knight;
+    private KnightUnit knight;
 
     private float lastAttackTime;
     private float attackDuration;
 
     private int comboCount;
-    
-    
+        
     public KnightAttackState(Entity entity, AnimationParamSO animationParam) : base(entity, animationParam)
     {
-        knight = entity as Unit;
+        knight = entity as KnightUnit;
     }
 
     public override void Enter()
     {
         base.Enter();
-        animator.OnAnimationEndEvent += TriggerCalled;
-        
+                
         attackDuration = knight.attackDuration;
         
         if (Time.time > lastAttackTime + attackDuration)
@@ -51,13 +49,10 @@ public class KnightAttackState : EntityState
     {
         base.Exit();
         lastAttackTime = Time.time;
-        animator.OnAnimationEndEvent -= TriggerCalled;
+        
     }
 
-    private void TriggerCalled()
-    {
-        isTriggerd = true;
-    }
+    
     
     
 }
