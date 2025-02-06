@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class KnightUnit : Unit
 {
+    public float attackRadius;
+    
     public AnimationParamSO comboCounterParam;
     
     //기사는 공속이 빨라지면서 대미지가 쎄질거임

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KnightMoveState : EntityState
 {
-    private Unit Knight;
+    private KnightUnit Knight;
     
     private EntityMover entityMover;
 
@@ -10,7 +10,7 @@ public class KnightMoveState : EntityState
     
     public KnightMoveState(Entity entity, AnimationParamSO animationParam) : base(entity, animationParam)
     {
-        Knight = entity as Unit;
+        Knight = entity as KnightUnit;
                 
         entityMover = entity.GetCompo<EntityMover>();
     }

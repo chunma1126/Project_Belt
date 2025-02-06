@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Unit
   - Enemy
   - Ground
   - 
@@ -42,11 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 3540315435
-    locked: 0
   - name: Wall
     uniqueID: 2011235045
+    locked: 0
+  - name: Ground
+    uniqueID: 3540315435
     locked: 0
   - name: Deco
     uniqueID: 2884241811

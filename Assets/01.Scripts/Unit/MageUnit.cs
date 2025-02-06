@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class MageUnit : Unit
 {
+    public float attackRadius;
+    
     public PoolableMono projectile;
     public Transform firePos;
     
     public bool canShowAttackGizmo;
-
+        
     private void Start()
     {
         GetCompo<EntityAnimator>().OnAttackEvent += Fire;

@@ -9,9 +9,6 @@ public abstract class Unit : Entity
     public Transform Target;
     public AnimationParamSO attackSpeedParam;
     
-    public float attackRadius;
-    
-    
     [Header("StateSO Info")]
     public List<StateSO> stateList;
     private EntityStateMachine StateMachine;
