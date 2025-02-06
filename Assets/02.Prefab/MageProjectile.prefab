@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1284940365
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5302132836332813922, guid: ad015b1ab3b086241993fc8fccbd7edc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -189,3 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e347ebb431e85a146b67605a99218b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  explosion: {fileID: -6947060570036684084, guid: 42a92e33014e6b34fb8509d9a0a69f98, type: 3}
+  fireSpeed: 13.3
