@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EntityMover : MonoBehaviour, IEntityComponent
 {
@@ -15,13 +13,22 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     public Transform checkWall;
     public Vector2 checkWallSize;
 
-    private Rigidbody2D rigidbody2D;
+    [Header("CanMove info")] 
+    public bool isCanMove;
+    public Transform checkCanMove;
+    public Vector2 checkCanMoveSize;
 
+    [Range(1, 20)] public float jumpForce;
+    
+    private Rigidbody2D rigidbody2D;
+    
     private Entity entity;
     private EntityRenderer renderer;
     
     private EntityStatController _entityStatController;
 
+    public bool canShowGizmo;
+    
     public void Initialize(Entity _entity)
     {
         entity = _entity;
@@ -31,27 +38,38 @@ public class EntityMover : MonoBehaviour, IEntityComponent
         _entityStatController = entity.GetCompo<EntityStatController>();
     }
 
-    public void Move(float _direction)
+    private void Update()
     {
+        //IsCanMove(renderer.lookDirection);
+    }
+
+    public bool Move(float _direction)
+    {
+        if(IsCanMove(_direction) == false)
+        {
+            StopImmediately();
+            return false;
+        }
+        
         float speed = _entityStatController.GetValue(StatType.MoveSpeed);
 
-        rigidbody2D.linearVelocityX = _direction * speed;
-
+        rigidbody2D.linearVelocityX =  _direction * speed;
+        
         if (_direction < 0 && renderer.lookRight)
             renderer.Flip();
         else if (_direction > 0 && renderer.lookRight == false)
             renderer.Flip();
-
+        
         int direction = entity.GetCompo<EntityRenderer>().lookDirection;
-        if (IsWall(direction) && IsGround())
+        if (IsGround() && IsWall(direction))
         {
-            Jump(5);
+            Jump(jumpForce);
         }
-
-        //print($"wall : {IsWall(direction)} , ground : {IsGround()}");
+        
+        return true;
     }
 
-    public void Jump(float _amount)
+    private void Jump(float _amount)
     {
         rigidbody2D.linearVelocityY = _amount;
     }
@@ -68,21 +86,28 @@ public class EntityMover : MonoBehaviour, IEntityComponent
         }
     }
 
-    public bool IsGround()
+    private bool IsGround()
     {
         isGround = Physics2D.BoxCast(transform.position, checkGroundSize, 0f, Vector2.down, checkGroundDistance, whatIsGround);
         return isGround;
     }
-      
-
-    public bool IsWall(int _direction)
+    
+    private bool IsWall(int _direction)
     {
         isWall =Physics2D.BoxCast(checkWall.position, checkWallSize, 0f, Vector2.right * _direction, 0, whatIsGround);
         return isWall;
     }
+        
+    private bool IsCanMove(float _direction)
+    {
+        isCanMove =Physics2D.BoxCast(checkCanMove.position, checkCanMoveSize, 0f, Vector2.right * _direction, 0, whatIsGround);
+        return isCanMove;
+    }
 
     private void OnDrawGizmos()
     {
+        if(!canShowGizmo)return;
+        
         Gizmos.color = Color.white;
    
         // Ground check - 실제 BoxCast 범위와 동일하게 표시
@@ -90,5 +115,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
    
         // Wall check - 실제 BoxCast 범위와 동일하게 표시 
         Gizmos.DrawWireCube(checkWall.position, checkWallSize);
+        
+        Gizmos.DrawWireCube(checkCanMove.position, checkCanMoveSize);
     }
 }

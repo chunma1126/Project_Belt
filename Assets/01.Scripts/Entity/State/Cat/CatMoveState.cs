@@ -29,13 +29,13 @@ public class CatMoveState : EntityState
         
         if (distance < minDistance)
         {
-            entityMover.Move(-lookDirection);
+            if(entityMover.Move(-lookDirection) == false)
+                cat.ChangeState("IDLE");
         }
         else
         {
             cat.ChangeState("HEAL");
         }
-        
     }
 
     public override void Exit()

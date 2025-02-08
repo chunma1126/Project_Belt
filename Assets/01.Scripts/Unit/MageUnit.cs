@@ -24,7 +24,7 @@ public class MageUnit : Unit
     {
         PoolableMono newProjectile = PoolManager.Instance.Pop(projectile.type);
         newProjectile.transform.position = firePos.position;
-
+        
         Vector2 fireDirection = (Target.position - transform.position).normalized;
         
         (newProjectile as Projectile).Fire(fireDirection);

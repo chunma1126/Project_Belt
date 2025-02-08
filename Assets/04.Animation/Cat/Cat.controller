@@ -41,7 +41,7 @@ AnimatorStateMachine:
     m_Position: {x: 320, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8554950634680099591}
-    m_Position: {x: 320, y: 100, z: 0}
+    m_Position: {x: 320, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5840423021043204481}
     m_Position: {x: 320, y: 160, z: 0}
@@ -149,6 +149,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: HEAL
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: ATTACKSPEED
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
