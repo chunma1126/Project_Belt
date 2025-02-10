@@ -25,7 +25,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     private Entity entity;
     private EntityRenderer renderer;
     
-    private EntityStatController _entityStatController;
+    private EntityStatController entityStatController;
 
     public bool canShowGizmo;
     
@@ -35,7 +35,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
         rigidbody2D = GetComponent<Rigidbody2D>();
         renderer = entity.GetCompo<EntityRenderer>();
-        _entityStatController = entity.GetCompo<EntityStatController>();
+        entityStatController = entity.GetCompo<EntityStatController>();
     }
 
     private void Update()
@@ -51,7 +51,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
             return false;
         }
         
-        float speed = _entityStatController.GetValue(StatType.MoveSpeed);
+        float speed = entityStatController.GetValue(StatType.MoveSpeed);
 
         rigidbody2D.linearVelocityX =  _direction * speed;
         
