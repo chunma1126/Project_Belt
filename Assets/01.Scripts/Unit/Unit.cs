@@ -36,8 +36,6 @@ public abstract class Unit : Entity
         activeSkillTime = GetCompo<EntityStatController>().GetValue(StatType.ActiveSkillTime);
     }
     
-    
-
     protected virtual void Update()
     {
         StateMachine.CurrentStateUpdate();

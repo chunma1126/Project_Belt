@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3471771117212150470}
   - component: {fileID: 9209563873331952323}
   m_Layer: 5
-  m_Name: Item 1
+  m_Name: Cookies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -239455008, guid: d411040c7d4ee2747a4335e00a992781, type: 3}
+  m_Sprite: {fileID: -7999359915324440046, guid: 63beb1f62f2cd7546957ac4414b0f3ee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,16 +89,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBoolArray:
-    Width: 2
+    Width: 3
     Height: 3
     serializedGrid:
+    - value: 0
     - value: 1
     - value: 1
     - value: 1
     - value: 1
     - value: 1
     - value: 1
-  itemIcon: {fileID: -239455008, guid: d411040c7d4ee2747a4335e00a992781, type: 3}
+    - value: 1
+    - value: 0
+  itemIcon: {fileID: -7999359915324440046, guid: 63beb1f62f2cd7546957ac4414b0f3ee, type: 3}
   onGridPositionX: 0
   onGridPositionY: 0
   itemRotation: 0
