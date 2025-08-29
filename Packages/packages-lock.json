@@ -93,12 +93,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.behavior": {
-      "version": "1.0.7",
+      "version": "1.0.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.7.2",
-        "com.unity.dt.app-ui": "2.0.0-pre.14",
+        "com.unity.dt.app-ui": "2.0.0-pre.16",
         "com.unity.modules.ai": "1.0.0",
         "com.unity.collections": "2.1.4",
         "com.unity.modules.audio": "1.0.0",
@@ -148,7 +148,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.dt.app-ui": {
-      "version": "2.0.0-pre.14",
+      "version": "2.0.0-pre.16",
       "depth": 1,
       "source": "registry",
       "dependencies": {

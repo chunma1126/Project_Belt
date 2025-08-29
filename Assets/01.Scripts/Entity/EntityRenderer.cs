@@ -19,13 +19,10 @@ public class EntityRenderer : MonoBehaviour,IEntityComponent
     public void Initialize(Entity _entity)
     {
         entity = _entity;
-    }
-    
-    private void Start()
-    {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originMaterial = _spriteRenderer.material;
     }
+    
 
     public void Flip()
     {

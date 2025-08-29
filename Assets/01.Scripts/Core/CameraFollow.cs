@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     {
         _cinemachineCamera = GetComponent<CinemachineCamera>();
 
-        //MoveTarget(0);
+        MoveTarget(0);
     }
     
     private void Update()

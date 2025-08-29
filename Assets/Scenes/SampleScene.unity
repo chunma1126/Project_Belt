@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectItem: {fileID: 0}
   overlapItem: {fileID: 0}
-  itemPrefab: {fileID: 2573826789360307965, guid: fcf16a14657291640bb3506092261235, type: 3}
+  itemPrefab: {fileID: 2573826789360307965, guid: 21edd0beac1e177478fe3f2e949aba2a, type: 3}
   canvasTransform: {fileID: 1422254381}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -5224,6 +5224,7 @@ GameObject:
   - component: {fileID: 1455575167}
   - component: {fileID: 1455575165}
   - component: {fileID: 1455575166}
+  - component: {fileID: 1455575168}
   m_Layer: 7
   m_Name: Enemy_Slime
   m_TagString: Enemy
@@ -5342,6 +5343,61 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.0015900135, y: 0.07132149}
   m_Radius: 0.5034237
+--- !u!114 &1455575168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455575162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: 5225905789991319269, guid: c850c4bcde0ed7448a42fab1f60ddb8b, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 2781718593689617113
+  - rid: 2781718593689617114
+  - rid: 2781718593689617115
+  - rid: 2781718593689617116
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2781718593689617113
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1455575162}
+    - rid: 2781718593689617114
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Rigidbody2D, UnityEngine.Physics2DModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6062551327635160798
+          m_Value1: 8090274646667283560
+        Name: Rigidbody
+        m_Value: {fileID: 1455575165}
+    - rid: 2781718593689617115
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9879506487150740664
+          m_Value1: 5187016531845840678
+        Name: Target
+        m_Value: {fileID: 12593328}
+    - rid: 2781718593689617116
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14229983971101503803
+          m_Value1: 2322216270607540638
+        Name: Animator
+        m_Value: {fileID: 291805387}
 --- !u!1 &1459566422
 GameObject:
   m_ObjectHideFlags: 0
